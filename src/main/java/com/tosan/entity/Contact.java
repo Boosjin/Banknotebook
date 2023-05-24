@@ -37,7 +37,7 @@ public abstract class Contact {
     private String nationalId;
 
     @Id
-    @Column(name = "CONTACT")
+    @Column(name = "CONTACT_VALUE")
     @NotBlank(message = "You Must Provide A Value For Contact")
     private String contactValue;
 }
