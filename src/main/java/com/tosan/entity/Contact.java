@@ -39,7 +39,7 @@ public abstract class Contact {
     @Id
     @Column(name = "CONTACT")
     @NotBlank(message = "You Must Provide A Value For Contact")
-    private String contact;
+    private String contactValue;
 }
 
 @Getter
