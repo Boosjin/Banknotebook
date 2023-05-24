@@ -1,12 +1,17 @@
 package com.tosan.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.Size;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
 public final class HomeNumber extends Contact {
-    public HomeNumber(String nationalId, String homeNumber) {
+    public HomeNumber(
+            @Size(min = 10, max = 10, message = "The Length Of National ID MUST Be 10 Characters")
+            String nationalId,
+            @Size(min = 11, max = 11, message = "Home Number Must Be 11 Digits")
+            String homeNumber) {
         super(nationalId, homeNumber);
     }
 }
