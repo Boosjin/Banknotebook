@@ -8,23 +8,26 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Slf4j
-public class PropertiesFileReaderServiceImpl {
+public abstract class PropertiesFileReaderServiceImpl {
 
-    private final FileReaderService fileReaderService;
+    private static Properties properties = null;
 
-    public PropertiesFileReaderServiceImpl(FileReaderService fileReaderService) {
-        this.fileReaderService = fileReaderService;
+    private PropertiesFileReaderServiceImpl() {
     }
 
-    public Properties getPropertiesFile() {
-        FileReader fileReader = fileReaderService.getFileReader("application.properties");
-        final Properties properties = new Properties();
-        try {
-            properties.load(fileReader);
-            return properties;
-        } catch (IOException e) {
-            log.info("Something Went Wrong While Loading Properties File");
-            throw new RuntimeException(e);
+    public static Properties getPropertiesFile() {
+
+        if (properties == null) {
+            final FileReaderService fileReaderService = new FileReaderServiceImpl();
+            FileReader fileReader = fileReaderService.getFileReader("application.properties");
+            properties = new Properties();
+            try {
+                properties.load(fileReader);
+            } catch (IOException e) {
+                log.info("Something Went Wrong While Loading Properties File");
+                System.exit(0);
+            }
         }
+        return properties;
     }
 }
