@@ -47,5 +47,5 @@ public abstract class Contact {
 @EqualsAndHashCode
 class ContactCompositeKey implements Serializable {
     private String nationalId;
-    private String contact;
+    private String contactValue;
 }
