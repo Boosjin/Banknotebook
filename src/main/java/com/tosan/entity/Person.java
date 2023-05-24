@@ -21,6 +21,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -58,4 +59,10 @@ public class Person {
     @JoinColumn(name = "NATIONAL_ID")
     @NotEmpty(message = "At Least One Contact Information Must Be Provided")
     private List<Contact> contactList;
+
+    public void addContactInfo(Contact contact) {
+        if (this.contactList == null) this.contactList = new ArrayList<>();
+        contact.setNationalId(this.getNationalId());
+        this.contactList.add(contact);
+    }
 }
