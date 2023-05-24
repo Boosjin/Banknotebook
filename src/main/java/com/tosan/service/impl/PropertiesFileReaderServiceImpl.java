@@ -19,7 +19,7 @@ public abstract class PropertiesFileReaderServiceImpl {
 
         if (properties == null) {
             final FileReaderService fileReaderService = new FileReaderServiceImpl();
-            FileReader fileReader = fileReaderService.getFileReader("application.properties");
+            FileReader fileReader = fileReaderService.getFileReader("src/main/resources/application.properties");
             properties = new Properties();
             try {
                 properties.load(fileReader);
