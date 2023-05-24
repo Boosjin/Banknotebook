@@ -1,10 +1,15 @@
 package com.tosan.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
@@ -16,6 +21,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "PERSON")
@@ -47,4 +53,9 @@ public class Person {
     @NotNull(message = "You Must Provide Date Of Birth")
     @PastOrPresent(message = "Date Of Birth Can Not Be In The Future")
     private LocalDate DateOfBirth;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "NATIONAL_ID")
+    @NotEmpty(message = "At Least One Contact Information Must Be Provided")
+    private List<Contact> contactList;
 }
