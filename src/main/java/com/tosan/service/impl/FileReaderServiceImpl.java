@@ -3,8 +3,10 @@ package com.tosan.service.impl;
 import com.tosan.service.FileReaderService;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 @Slf4j
 public class FileReaderServiceImpl implements FileReaderService {
@@ -30,5 +32,22 @@ public class FileReaderServiceImpl implements FileReaderService {
             System.exit(0);
         }
         return fileReader;
+    }
+
+    @Override
+    public boolean isFileEmpty(String fileUrl, int linesToSkip) {
+        if (linesToSkip < 0) {
+            log.info("The Number Of Lines To Skip Can Not Be Negative\n\n\n");
+            System.exit(0);
+        }
+        try (BufferedReader bufferedReader = new BufferedReader(this.getFileReader(fileUrl))) {
+            for (int i = 0; i < linesToSkip + 1; i++) {
+                if (bufferedReader.readLine() == null) return true;
+            }
+        } catch (IOException e) {
+            log.info("Something Went Wrong While Reading The Lines From The File\n\tFile URL: " + fileUrl + "\n\n\n");
+            System.exit(0);
+        }
+        return false;
     }
 }
