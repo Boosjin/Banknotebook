@@ -33,4 +33,10 @@ public class FileProgressServiceImpl implements FileProgressService {
 
         return fileProgressDao.getFileProgress(fileUrl);
     }
+
+    @Override
+    public boolean isFileCompletelyProcessed(FileProgress fileProgress) {
+        if (fileProgress == null) return false;
+        return fileProgress.getFinished();
+    }
 }

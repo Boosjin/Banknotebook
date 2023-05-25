@@ -8,4 +8,5 @@ public interface FileProgressService {
 
     FileProgress getFileProgress(String fileUrl);
 
+    boolean isFileCompletelyProcessed(FileProgress fileProgress);
 }
