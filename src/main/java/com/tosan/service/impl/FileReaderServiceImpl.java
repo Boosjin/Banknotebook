@@ -26,7 +26,7 @@ public class FileReaderServiceImpl implements FileReaderService {
         try {
             fileReader = new FileReader(fileUrl);
         } catch (FileNotFoundException e) {
-            log.info("File Was Not Found\nProvided Location: " + fileUrl);
+            log.info("File Was Not Found\nProvided Location: " + fileUrl + "\n\n\n");
             System.exit(0);
         }
         return fileReader;

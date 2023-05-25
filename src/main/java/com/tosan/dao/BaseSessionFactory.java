@@ -36,7 +36,7 @@ public abstract class BaseSessionFactory {
                         .addAnnotatedClass(Person.class)
                         .buildSessionFactory();
             } catch (HibernateException e) {
-                log.info("Something Went Wrong While Making Session Factory");
+                log.info("Something Went Wrong While Making Session Factory\n\n\n");
                 System.exit(0);
             }
             reentrantLock.unlock();

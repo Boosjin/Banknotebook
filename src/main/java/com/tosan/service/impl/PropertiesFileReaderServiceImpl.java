@@ -24,7 +24,7 @@ public abstract class PropertiesFileReaderServiceImpl {
             try {
                 properties.load(fileReader);
             } catch (IOException e) {
-                log.info("Something Went Wrong While Loading Properties File");
+                log.info("Something Went Wrong While Loading Properties File\n\n\n");
                 System.exit(0);
             }
         }
