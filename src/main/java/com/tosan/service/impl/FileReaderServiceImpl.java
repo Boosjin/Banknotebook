@@ -47,4 +47,15 @@ public class FileReaderServiceImpl implements FileReaderService {
         }
         return false;
     }
+
+    @Override
+    public FileReader skipCharacters(FileReader fileReader, long amount) {
+        try {
+            fileReader.skip(amount);
+        } catch (IOException e) {
+            log.info("Something Went Wrong While Skipping Characters In File");
+            System.exit(0);
+        }
+        return fileReader;
+    }
 }
