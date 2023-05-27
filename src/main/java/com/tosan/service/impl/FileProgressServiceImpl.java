@@ -29,12 +29,10 @@ public class FileProgressServiceImpl implements FileProgressService {
             log.info("You Can Not Pass A Null String As File Location\n\n\n");
             System.exit(0);
         }
-
         if (fileUrl.trim().equals("")) {
             log.info("You Can Not Pass An Empty String As File Location\n\n\n");
             System.exit(0);
         }
-
         return fileProgressDao.getFileProgress(fileUrl);
     }
 
