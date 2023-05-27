@@ -11,7 +11,7 @@ import org.hibernate.SessionFactory;
 public class FileProgressDaoImpl implements FileProgressDao {
 
     @Override
-    public void saveProgress(FileProgress fileProgress) {
+    public void saveFileProgress(FileProgress fileProgress) {
 
         final SessionFactory sessionFactory = BaseSessionFactory.getInstance();
         final Session session = sessionFactory.getCurrentSession();

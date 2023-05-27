@@ -4,7 +4,7 @@ import com.tosan.entity.FileProgress;
 
 public interface FileProgressService {
 
-    void saveProgress(FileProgress fileProgress);
+    void saveFileProgress(FileProgress fileProgress);
 
     FileProgress getFileProgress(String fileUrl);
 

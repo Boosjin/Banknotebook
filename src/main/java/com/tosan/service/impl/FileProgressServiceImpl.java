@@ -15,8 +15,8 @@ public class FileProgressServiceImpl implements FileProgressService {
     }
 
     @Override
-    public void saveProgress(FileProgress fileProgress) {
-        fileProgressDao.saveProgress(fileProgress);
+    public void saveFileProgress(FileProgress fileProgress) {
+        fileProgressDao.saveFileProgress(fileProgress);
     }
 
     @Override
