@@ -23,7 +23,6 @@ public abstract class BaseSessionFactory {
     }
 
     public static SessionFactory getInstance() {
-
         if (sessionFactory == null) {
             reentrantLock.lock();
             try {
