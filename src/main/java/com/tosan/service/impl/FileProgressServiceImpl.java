@@ -16,6 +16,10 @@ public class FileProgressServiceImpl implements FileProgressService {
 
     @Override
     public void saveFileProgress(FileProgress fileProgress) {
+        if (fileProgress == null) {
+            log.info("You Can Not Provide A Null File Progress To Save");
+            System.exit(0);
+        }
         fileProgressDao.saveFileProgress(fileProgress);
     }
 
