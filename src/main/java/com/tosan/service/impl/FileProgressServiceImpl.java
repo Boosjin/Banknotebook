@@ -37,8 +37,7 @@ public class FileProgressServiceImpl implements FileProgressService {
     }
 
     @Override
-    public boolean isFileCompletelyProcessed(FileProgress fileProgress) {
-        if (fileProgress == null) return false;
-        return fileProgress.getFinished();
+    public boolean isFileCompletelyProcessed(String fileUrl) {
+        return this.getFileProgress(fileUrl).getFinished();
     }
 }
