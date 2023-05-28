@@ -30,7 +30,7 @@ public class FileProgress {
 
     @Column(name = "PROCESSED_CHARACTERS")
     @PositiveOrZero(message = "Number Of Processed Characters Can Not Be Negative")
-    private Long processedCharacters;
+    private Long numberOfProcessedCharacters;
 
     @Column(name = "VALID_RECORDS")
     @PositiveOrZero(message = "Number Of Valid Records Can Not Be Negative")
