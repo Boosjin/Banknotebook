@@ -40,4 +40,9 @@ public class FileProgressServiceImpl implements FileProgressService {
     public boolean isFileCompletelyProcessed(String fileUrl) {
         return this.getFileProgress(fileUrl).getFinished();
     }
+
+    @Override
+    public long getNumberOfProcessedCharacters(String fileUrl) {
+        return this.getFileProgress(fileUrl).getNumberOfProcessedCharacters();
+    }
 }
