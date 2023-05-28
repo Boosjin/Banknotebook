@@ -38,11 +38,15 @@ public class FileProgressServiceImpl implements FileProgressService {
 
     @Override
     public boolean isFileCompletelyProcessed(String fileUrl) {
-        return this.getFileProgress(fileUrl).getFinished();
+        FileProgress fileProgress = this.getFileProgress(fileUrl);
+        if (fileProgress == null) return false;
+        else return fileProgress.getFinished();
     }
 
     @Override
     public long getNumberOfProcessedCharacters(String fileUrl) {
-        return this.getFileProgress(fileUrl).getNumberOfProcessedCharacters();
+        FileProgress fileProgress = this.getFileProgress(fileUrl);
+        if (fileProgress == null) return 0;
+        else return fileProgress.getNumberOfProcessedCharacters();
     }
 }
