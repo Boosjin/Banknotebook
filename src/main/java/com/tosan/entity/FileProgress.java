@@ -24,9 +24,9 @@ import lombok.ToString;
 public class FileProgress {
 
     @Id
-    @Column(name = "FILE_LOCATION")
-    @NotBlank(message = "File Location Can Not Be An Empty String")
-    private String fileLocation;
+    @Column(name = "FILE_URL")
+    @NotBlank(message = "File URL Can Not Be An Empty String")
+    private String fileUrl;
 
     @Column(name = "PROCESSED_CHARACTERS")
     @PositiveOrZero(message = "Number Of Processed Characters Can Not Be Negative")
