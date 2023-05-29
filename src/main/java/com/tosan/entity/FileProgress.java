@@ -52,4 +52,9 @@ public class FileProgress {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "fileUrl")
     private List<ProcessedCharactersRange> processedCharactersRanges;
+
+    public void setProcessedCharactersRanges(List<ProcessedCharactersRange> processedCharactersRanges) {
+        this.processedCharactersRanges = processedCharactersRanges;
+        processedCharactersRanges.forEach(processedCharactersRange -> processedCharactersRange.setFileUrl(this.getFileUrl()));
+    }
 }
