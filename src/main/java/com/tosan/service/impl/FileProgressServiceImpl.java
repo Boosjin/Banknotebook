@@ -59,9 +59,11 @@ public class FileProgressServiceImpl implements FileProgressService {
     @Override
     public List<Long> getProcessedCharactersRanges(String fileUrl) {
         // getting and sorting ranges
-        final FileProgress fileProgress = this.getFileProgress(fileUrl);
-        final List<ProcessedCharactersRange> processedCharactersRanges = fileProgress.getProcessedCharactersRanges();
         List<Long> ranges = new LinkedList<>();
+        final FileProgress fileProgress = this.getFileProgress(fileUrl);
+        if (fileProgress == null) return ranges;
+        final List<ProcessedCharactersRange> processedCharactersRanges = fileProgress.getProcessedCharactersRanges();
+        if (processedCharactersRanges == null || processedCharactersRanges.size() == 0) return ranges;
         processedCharactersRanges.forEach(processedCharactersRange ->
         {
             ranges.add(processedCharactersRange.getBeginning());
