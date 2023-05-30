@@ -9,13 +9,10 @@ import org.hibernate.SessionFactory;
 
 @Slf4j
 public class FileProgressDaoImpl implements FileProgressDao {
-
     @Override
     public void saveFileProgress(FileProgress fileProgress) {
-
         final SessionFactory sessionFactory = BaseSessionFactory.getInstance();
         final Session session = sessionFactory.getCurrentSession();
-
         try {
             session.beginTransaction();
             session.merge(fileProgress);
@@ -39,11 +36,9 @@ public class FileProgressDaoImpl implements FileProgressDao {
 
     @Override
     public FileProgress getFileProgress(String fileUrl) {
-
         final SessionFactory sessionFactory = BaseSessionFactory.getInstance();
         final Session session = sessionFactory.getCurrentSession();
         FileProgress fileProgress = null;
-
         try {
             session.beginTransaction();
             fileProgress = session.get(FileProgress.class, fileUrl);
