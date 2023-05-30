@@ -3,10 +3,14 @@ package com.tosan.service;
 import org.apache.commons.csv.CSVRecord;
 
 import java.io.FileReader;
+import java.io.Reader;
 
 public interface CsvFileService {
     public String getCsvFileUrl();
+
     String[] getCsvFileHeaders();
+
     FileReader getCsvFileFileReader(String csvFileUrl);
-    Iterable<CSVRecord> getCsvFileRecordsIterable(FileReader csvFileReader, String[] csvHeaders);
+
+    public Iterable<CSVRecord> getCsvFileRecordsIterable(Reader reader, String[] csvHeaders);
 }

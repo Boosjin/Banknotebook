@@ -8,6 +8,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 
 @Slf4j
 public class CsvFileServiceImpl implements CsvFileService {
@@ -52,7 +53,7 @@ public class CsvFileServiceImpl implements CsvFileService {
     }
 
     @Override
-    public Iterable<CSVRecord> getCsvFileRecordsIterable(FileReader csvFileReader, String[] csvHeaders) {
+    public Iterable<CSVRecord> getCsvFileRecordsIterable(Reader reader, String[] csvHeaders) {
         Iterable<CSVRecord> csvRecordIterable = null;
         try {
             csvRecordIterable = CSVFormat.DEFAULT
@@ -60,7 +61,7 @@ public class CsvFileServiceImpl implements CsvFileService {
                     .setHeader(csvHeaders)
                     .setSkipHeaderRecord(true)
                     .build()
-                    .parse(csvFileReader);
+                    .parse(reader);
         } catch (IOException e) {
             log.info("Something Went Wrong While Parsing CSV File\n\n\n");
             System.exit(0);
