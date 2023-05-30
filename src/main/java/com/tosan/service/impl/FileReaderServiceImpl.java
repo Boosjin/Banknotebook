@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 
 @Slf4j
 public class FileReaderServiceImpl implements FileReaderService {
@@ -57,5 +58,12 @@ public class FileReaderServiceImpl implements FileReaderService {
             System.exit(0);
         }
         return fileReader;
+    }
+
+    @Override
+    public Iterator<String> getFileIterator(String fileUrl) {
+        FileReader fileReader = this.getFileReader(fileUrl);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        return bufferedReader.lines().iterator();
     }
 }
