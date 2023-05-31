@@ -28,13 +28,13 @@ public class ProcessedLinesRange {
     @Column(name = "BEGINNING")
     @NotNull(message = "The Beginning Of The Range Can Not Be Null")
     @PositiveOrZero(message = "The Beginning Of The Range Can Not Be A Negative Number")
-    private Long beginning;
+    private Integer beginning;
 
     @Id
     @Column(name = "END")
     @NotNull(message = "The End Of The Range Can Not Be Null")
     @PositiveOrZero(message = "The End Of The Range Can Not Be A Negative Number")
-    private Long end;
+    private Integer end;
 }
 
 @Getter
