@@ -3,6 +3,7 @@ package com.tosan.service.impl;
 import com.tosan.dao.FileProgressDao;
 import com.tosan.entity.FileProgress;
 import com.tosan.entity.ProcessedCharactersRange;
+import com.tosan.entity.ProcessedLinesRange;
 import com.tosan.service.FileProgressService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -73,6 +74,35 @@ public class FileProgressServiceImpl implements FileProgressService {
             // remove neighbour ranges
             Collections.sort(ranges);
             List<Long> mergedRanges = new ArrayList<>();
+            mergedRanges.add(ranges.get(0));
+            for (int i = 1; i < ranges.size() - 1; i += 2) {
+                if (ranges.get(i) + 1 == ranges.get(i + 1)) continue;
+                mergedRanges.add(ranges.get(i));
+                mergedRanges.add(ranges.get(i + 1));
+            }
+            mergedRanges.add(ranges.get(ranges.size() - 1));
+            return mergedRanges;
+        }
+        return ranges;
+    }
+
+    @Override
+    public List<Integer> getProcessedLinesRange(String fileUrl) {
+        // getting and sorting ranges
+        List<Integer> ranges = new LinkedList<>();
+        final FileProgress fileProgress = this.getFileProgress(fileUrl);
+        if (fileProgress == null) return ranges;
+        final List<ProcessedLinesRange> processedLinesRanges = fileProgress.getProcessedLinesRanges();
+        if (processedLinesRanges == null || processedLinesRanges.size() == 0) return ranges;
+        processedLinesRanges.forEach(processedCharactersRange ->
+        {
+            ranges.add(processedCharactersRange.getBeginning());
+            ranges.add(processedCharactersRange.getEnd());
+        });
+        if (ranges.size() > 2) {
+            // remove neighbour ranges
+            Collections.sort(ranges);
+            List<Integer> mergedRanges = new ArrayList<>();
             mergedRanges.add(ranges.get(0));
             for (int i = 1; i < ranges.size() - 1; i += 2) {
                 if (ranges.get(i) + 1 == ranges.get(i + 1)) continue;
