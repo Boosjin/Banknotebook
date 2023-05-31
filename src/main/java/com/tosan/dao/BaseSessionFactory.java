@@ -29,6 +29,7 @@ public abstract class BaseSessionFactory {
                         .addAnnotatedClass(MobileNumber.class)
                         .addAnnotatedClass(Person.class)
                         .addAnnotatedClass(ProcessedCharactersRange.class)
+                        .addAnnotatedClass(ProcessedLinesRange.class)
                         .buildSessionFactory();
             } catch (HibernateException e) {
                 log.info("Something Went Wrong While Making Session Factory\n\n\n");
