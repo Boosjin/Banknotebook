@@ -1,6 +1,6 @@
 package com.tosan.service;
 
-import org.apache.commons.csv.CSVRecord;
+import org.apache.commons.csv.CSVParser;
 
 import java.io.FileReader;
 import java.io.Reader;
@@ -12,5 +12,5 @@ public interface CsvFileService {
 
     FileReader getCsvFileFileReader(String csvFileUrl);
 
-    Iterable<CSVRecord> getCsvFileRecordsIterable(Reader reader, String[] csvHeaders);
+    CSVParser getCsvParser(Reader reader, String[] csvHeaders);
 }

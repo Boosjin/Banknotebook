@@ -4,6 +4,7 @@ import com.tosan.service.CsvFileService;
 import com.tosan.service.FileReaderService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import java.io.FileReader;
@@ -53,10 +54,10 @@ public class CsvFileServiceImpl implements CsvFileService {
     }
 
     @Override
-    public Iterable<CSVRecord> getCsvFileRecordsIterable(Reader reader, String[] csvHeaders) {
-        Iterable<CSVRecord> csvRecordIterable = null;
+    public CSVParser getCsvParser(Reader reader, String[] csvHeaders) {
+        CSVParser csvParser = null;
         try {
-            csvRecordIterable = CSVFormat.DEFAULT
+            csvParser = CSVFormat.DEFAULT
                     .builder()
                     .setHeader(csvHeaders)
                     .setSkipHeaderRecord(true)
@@ -66,6 +67,6 @@ public class CsvFileServiceImpl implements CsvFileService {
             log.info("Something Went Wrong While Parsing CSV File\n\n\n");
             System.exit(0);
         }
-        return csvRecordIterable;
+        return csvParser;
     }
 }
