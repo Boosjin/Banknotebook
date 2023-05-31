@@ -6,11 +6,11 @@ import java.io.FileReader;
 import java.io.Reader;
 
 public interface CsvFileService {
-    public String getCsvFileUrl();
+    String getCsvFileUrl();
 
     String[] getCsvFileHeaders();
 
     FileReader getCsvFileFileReader(String csvFileUrl);
 
-    public Iterable<CSVRecord> getCsvFileRecordsIterable(Reader reader, String[] csvHeaders);
+    Iterable<CSVRecord> getCsvFileRecordsIterable(Reader reader, String[] csvHeaders);
 }
