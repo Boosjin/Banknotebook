@@ -3,7 +3,7 @@ package com.tosan.service.impl;
 import com.tosan.dao.FileProgressDao;
 import com.tosan.entity.FileProgress;
 import com.tosan.entity.ProcessedCharactersRange;
-import com.tosan.entity.ProcessedLinesRange;
+import com.tosan.entity.ProcessedRecordsRange;
 import com.tosan.service.FileProgressService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -87,17 +87,17 @@ public class FileProgressServiceImpl implements FileProgressService {
     }
 
     @Override
-    public List<Integer> getProcessedLinesRange(String fileUrl) {
+    public List<Integer> getProcessedRecordsRanges(String fileUrl) {
         // getting and sorting ranges
         List<Integer> ranges = new LinkedList<>();
         final FileProgress fileProgress = this.getFileProgress(fileUrl);
         if (fileProgress == null) return ranges;
-        final List<ProcessedLinesRange> processedLinesRanges = fileProgress.getProcessedLinesRanges();
-        if (processedLinesRanges == null || processedLinesRanges.size() == 0) return ranges;
-        processedLinesRanges.forEach(processedCharactersRange ->
+        final List<ProcessedRecordsRange> processedRecordsRanges = fileProgress.getProcessedRecordsRanges();
+        if (processedRecordsRanges == null || processedRecordsRanges.size() == 0) return ranges;
+        processedRecordsRanges.forEach(processedRecordsRange ->
         {
-            ranges.add(processedCharactersRange.getBeginning());
-            ranges.add(processedCharactersRange.getEnd());
+            ranges.add(processedRecordsRange.getBeginning());
+            ranges.add(processedRecordsRange.getEnd());
         });
         if (ranges.size() > 2) {
             // remove neighbour ranges

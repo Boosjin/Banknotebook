@@ -9,15 +9,15 @@ import lombok.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "PROCESSED_LINES_RANGE")
+@Table(name = "PROCESSED_RECORDS_RANGE")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-@IdClass(ProcessedLinesRangeCompositeKey.class)
-public class ProcessedLinesRange {
+@IdClass(ProcessedRecordsRangeCompositeKey.class)
+public class ProcessedRecordsRange {
 
     @Id
     @Column(name = "FILE_URL")
@@ -40,7 +40,7 @@ public class ProcessedLinesRange {
 @Getter
 @Setter
 @EqualsAndHashCode
-class ProcessedLinesRangeCompositeKey implements Serializable {
+class ProcessedRecordsRangeCompositeKey implements Serializable {
     private String fileUrl;
     private Long beginning;
     private Long end;

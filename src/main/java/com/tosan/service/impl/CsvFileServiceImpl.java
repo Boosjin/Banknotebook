@@ -54,7 +54,7 @@ public class CsvFileServiceImpl implements CsvFileService {
     }
 
     @Override
-    public CSVParser getCsvParser(Reader reader, String[] csvHeaders) {
+    public CSVParser getCsvFileParser(Reader reader, String[] csvHeaders) {
         CSVParser csvParser = null;
         try {
             csvParser = CSVFormat.DEFAULT

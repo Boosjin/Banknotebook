@@ -12,5 +12,5 @@ public interface CsvFileService {
 
     FileReader getCsvFileFileReader(String csvFileUrl);
 
-    CSVParser getCsvParser(Reader reader, String[] csvHeaders);
+    CSVParser getCsvFileParser(Reader reader, String[] csvHeaders);
 }
