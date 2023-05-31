@@ -1,11 +1,6 @@
 package com.tosan.dao;
 
-import com.tosan.entity.Contact;
-import com.tosan.entity.Email;
-import com.tosan.entity.FileProgress;
-import com.tosan.entity.HomeNumber;
-import com.tosan.entity.MobileNumber;
-import com.tosan.entity.Person;
+import com.tosan.entity.*;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
@@ -33,6 +28,7 @@ public abstract class BaseSessionFactory {
                         .addAnnotatedClass(HomeNumber.class)
                         .addAnnotatedClass(MobileNumber.class)
                         .addAnnotatedClass(Person.class)
+                        .addAnnotatedClass(ProcessedCharactersRange.class)
                         .buildSessionFactory();
             } catch (HibernateException e) {
                 log.info("Something Went Wrong While Making Session Factory\n\n\n");
