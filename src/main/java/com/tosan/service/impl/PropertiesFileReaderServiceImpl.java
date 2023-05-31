@@ -18,7 +18,7 @@ public abstract class PropertiesFileReaderServiceImpl {
     public static Properties getPropertiesFile() {
         if (properties == null) {
             final FileReaderService fileReaderService = new FileReaderServiceImpl();
-            FileReader fileReader = fileReaderService.getFileReader("src/main/resources/application.properties");
+            FileReader fileReader = fileReaderService.getFileReader("Banknotebook/src/main/resources/application.properties");
             properties = new Properties();
             try {
                 properties.load(fileReader);
