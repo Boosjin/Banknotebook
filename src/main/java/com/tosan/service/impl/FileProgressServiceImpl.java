@@ -3,7 +3,7 @@ package com.tosan.service.impl;
 import com.tosan.dao.FileProgressDao;
 import com.tosan.entity.FileProgress;
 import com.tosan.entity.ProcessedCharactersRange;
-import com.tosan.entity.ProcessedRecordsRange;
+import com.tosan.entity.ProcessedRecordNumber;
 import com.tosan.service.FileProgressService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -87,31 +87,15 @@ public class FileProgressServiceImpl implements FileProgressService {
     }
 
     @Override
-    public List<Integer> getProcessedRecordsRanges(String fileUrl) {
-        // getting and sorting ranges
-        List<Integer> ranges = new LinkedList<>();
+    public List<Long> getProcessedRecordsNumbers(String fileUrl) {
+        final List<Long> list = new LinkedList<>();
         final FileProgress fileProgress = this.getFileProgress(fileUrl);
-        if (fileProgress == null) return ranges;
-        final List<ProcessedRecordsRange> processedRecordsRanges = fileProgress.getProcessedRecordsRanges();
-        if (processedRecordsRanges == null || processedRecordsRanges.size() == 0) return ranges;
-        processedRecordsRanges.forEach(processedRecordsRange ->
-        {
-            ranges.add(processedRecordsRange.getBeginning());
-            ranges.add(processedRecordsRange.getEnd());
-        });
-        if (ranges.size() > 2) {
-            // remove neighbour ranges
-            Collections.sort(ranges);
-            List<Integer> mergedRanges = new ArrayList<>();
-            mergedRanges.add(ranges.get(0));
-            for (int i = 1; i < ranges.size() - 1; i += 2) {
-                if (ranges.get(i) + 1 == ranges.get(i + 1)) continue;
-                mergedRanges.add(ranges.get(i));
-                mergedRanges.add(ranges.get(i + 1));
-            }
-            mergedRanges.add(ranges.get(ranges.size() - 1));
-            return mergedRanges;
-        }
-        return ranges;
+        if (fileProgress == null) return list;
+        final List<ProcessedRecordNumber> processedRecordsNumbers = fileProgress.getProcessedRecordsNumbers();
+        if (processedRecordsNumbers.size() == 0) return list;
+        processedRecordsNumbers.forEach(processedRecordNumber -> list.add(processedRecordNumber.getRecordNumber()));
+        if (list.size() == 1) return list;
+        Collections.sort(list);
+        return list;
     }
 }

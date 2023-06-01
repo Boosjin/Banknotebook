@@ -55,7 +55,7 @@ public class FileProgress {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "fileUrl")
-    private List<ProcessedRecordsRange> processedRecordsRanges;
+    private List<ProcessedRecordNumber> processedRecordsNumbers;
 
     public void setProcessedCharactersRanges(List<ProcessedCharactersRange> processedCharactersRanges) {
         this.processedCharactersRanges = processedCharactersRanges;

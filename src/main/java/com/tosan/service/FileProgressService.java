@@ -10,5 +10,5 @@ public interface FileProgressService {
     boolean isFileCompletelyProcessed(String fileUrl);
     long getNumberOfProcessedCharacters(String fileUrl);
     List<Long> getProcessedCharactersRanges(String fileUrl);
-    List<Integer> getProcessedRecordsRanges(String fileUrl);
+    List<Long> getProcessedRecordsNumbers(String fileUrl);
 }
