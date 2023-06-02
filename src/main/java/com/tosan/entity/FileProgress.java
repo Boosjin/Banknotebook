@@ -22,10 +22,6 @@ public class FileProgress {
     @NotBlank(message = "File URL Can Not Be An Empty String")
     private String fileUrl;
 
-    @Column(name = "PROCESSED_CHARACTERS")
-    @PositiveOrZero(message = "Number Of Processed Characters Can Not Be Negative")
-    private Long numberOfProcessedCharacters;
-
     @Column(name = "VALID_RECORDS")
     @PositiveOrZero(message = "Number Of Valid Records Can Not Be Negative")
     private Integer validRecords;

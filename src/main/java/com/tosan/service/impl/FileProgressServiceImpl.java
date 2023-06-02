@@ -49,13 +49,6 @@ public class FileProgressServiceImpl implements FileProgressService {
     }
 
     @Override
-    public long getNumberOfProcessedCharacters(String fileUrl) {
-        final FileProgress fileProgress = this.getFileProgress(fileUrl);
-        if (fileProgress == null) return 0;
-        else return fileProgress.getNumberOfProcessedCharacters();
-    }
-
-    @Override
     public List<Long> getProcessedRecordsNumbers(String fileUrl) {
         final List<Long> list = new LinkedList<>();
         final FileProgress fileProgress = this.getFileProgress(fileUrl);
