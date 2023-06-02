@@ -15,7 +15,7 @@ public class ProcessedRecordNumberDaoImpl implements ProcessedRecordNumberDao {
         final Session session = sessionFactory.getCurrentSession();
         try {
             session.beginTransaction();
-            session.persist(processedRecordNumber);
+            session.merge(processedRecordNumber);
         } catch (Exception e) {
             if (!session.getTransaction().isActive()) {
                 log.info("Could Not Start Transaction\n\n\n");
