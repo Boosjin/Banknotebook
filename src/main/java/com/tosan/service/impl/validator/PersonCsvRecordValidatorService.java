@@ -8,6 +8,14 @@ import org.apache.commons.validator.routines.EmailValidator;
 @Slf4j
 public abstract class PersonCsvRecordValidatorService {
     public static boolean isCsvRecordValid(CSVRecord record, String[] csvHeaders) {
+        if (record == null) {
+            log.info("You Can Not Provide A Null Record For Validation\n\n\n");
+            System.exit(0);
+        }
+        if (csvHeaders == null) {
+            log.info("You Can Not Provide A Null Array Of Strings As CSV Headers For Validation\n\n\n");
+            System.exit(0);
+        }
         if (record.size() != csvHeaders.length) {
             log.info("Invalid Number Of Arguments In Record Number " + record.getRecordNumber() + "\n\n\n");
             return false;
