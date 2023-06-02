@@ -34,16 +34,24 @@ public class FileReaderServiceImpl implements FileReaderService {
 
     @Override
     public boolean isFileEmpty(String fileUrl, int linesToSkip) {
+        if (fileUrl == null) {
+            log.info("You Can Not Provide A Null String As File URL\n\n\n");
+            System.exit(0);
+        }
+        if (fileUrl.trim().equals("")) {
+            log.info("You Can Not Provide An Empty String As File URL\n\n\n");
+            System.exit(0);
+        }
         if (linesToSkip < 0) {
             log.info("The Number Of Lines To Skip Can Not Be Negative\n\n\n");
             System.exit(0);
         }
-        try (BufferedReader bufferedReader = new BufferedReader(this.getFileReader(fileUrl))) {
+        try (BufferedReader bufferedReader = new BufferedReader(this.getFileReader(fileUrl.trim()))) {
             for (int i = 0; i < linesToSkip + 1; i++) {
                 if (bufferedReader.readLine() == null) return true;
             }
         } catch (IOException e) {
-            log.info("Something Went Wrong While Reading The Lines From The File\n\tFile URL: " + fileUrl + "\n\n\n");
+            log.info("Something Went Wrong While Reading The Lines From The File\n\tFile URL: " + fileUrl.trim() + "\n\n\n");
             System.exit(0);
         }
         return false;
