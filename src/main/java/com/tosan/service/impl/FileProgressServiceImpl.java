@@ -59,8 +59,16 @@ public class FileProgressServiceImpl implements FileProgressService {
 
     @Override
     public List<Long> getProcessedRecordsNumbers(String fileUrl) {
+        if (fileUrl == null) {
+            log.info("You Can Not Pass A Null String As File Location\n\n\n");
+            System.exit(0);
+        }
+        if (fileUrl.trim().equals("")) {
+            log.info("You Can Not Pass An Empty String As File Location\n\n\n");
+            System.exit(0);
+        }
         final List<Long> list = new LinkedList<>();
-        final FileProgress fileProgress = this.getFileProgress(fileUrl);
+        final FileProgress fileProgress = this.getFileProgress(fileUrl.trim());
         if (fileProgress == null) return list;
         final List<ProcessedRecordNumber> processedRecordsNumbers = fileProgress.getProcessedRecordsNumbers();
         if (processedRecordsNumbers.size() == 0) return list;
