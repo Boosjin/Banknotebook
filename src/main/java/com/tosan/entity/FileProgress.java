@@ -34,8 +34,8 @@ public class FileProgress {
     @Column(name = "FINISHED")
     private Boolean finished;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fileUrl")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "FILE_URL")
     private List<ProcessedRecordNumber> processedRecordsNumbers;
 
     public void setProcessedRecordsNumbers(List<ProcessedRecordNumber> processedRecordsNumbers) {
