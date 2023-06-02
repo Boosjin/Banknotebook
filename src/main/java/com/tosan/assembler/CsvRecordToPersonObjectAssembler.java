@@ -19,8 +19,8 @@ public class CsvRecordToPersonObjectAssembler {
                 new ArrayList<>());
         if (!record.get("email").trim().equals(""))
             person.addContactInfo(new Email(nationalId, record.get("email").trim()));
-        if (!record.get("mobile").trim().equals(""))
-            person.addContactInfo(new MobileNumber(nationalId, record.get("mobile").trim()));
+        if (!record.get("mobileNumber").trim().equals(""))
+            person.addContactInfo(new MobileNumber(nationalId, record.get("mobileNumber").trim()));
         if (!record.get("homeNumber").trim().equals(""))
             person.addContactInfo(new HomeNumber(nationalId, record.get("homeNumber").trim()));
         return person;
