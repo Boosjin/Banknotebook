@@ -9,4 +9,5 @@ public interface FileProgressService {
     FileProgress getFileProgress(String fileUrl);
     boolean isFileCompletelyProcessed(String fileUrl);
     List<Long> getProcessedRecordsNumbers(String fileUrl);
+    void markFileAsProcessed(String fileUrl);
 }
