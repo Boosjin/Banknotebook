@@ -28,7 +28,6 @@ public abstract class BaseSessionFactory {
                         .addAnnotatedClass(HomeNumber.class)
                         .addAnnotatedClass(MobileNumber.class)
                         .addAnnotatedClass(Person.class)
-                        .addAnnotatedClass(ProcessedCharactersRange.class)
                         .addAnnotatedClass(ProcessedRecordNumber.class)
                         .buildSessionFactory();
             } catch (HibernateException e) {
