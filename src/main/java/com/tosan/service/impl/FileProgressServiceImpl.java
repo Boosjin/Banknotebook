@@ -6,10 +6,8 @@ import com.tosan.entity.ProcessedRecordNumber;
 import com.tosan.service.FileProgressService;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Slf4j
 public class FileProgressServiceImpl implements FileProgressService {
@@ -58,7 +56,7 @@ public class FileProgressServiceImpl implements FileProgressService {
     }
 
     @Override
-    public List<Long> getProcessedRecordsNumbers(String fileUrl) {
+    public Set<Long> getProcessedRecordsNumbers(String fileUrl) {
         if (fileUrl == null) {
             log.info("You Can Not Pass A Null String As File Location\n\n\n");
             System.exit(0);
@@ -67,15 +65,12 @@ public class FileProgressServiceImpl implements FileProgressService {
             log.info("You Can Not Pass An Empty String As File Location\n\n\n");
             System.exit(0);
         }
-        final List<Long> list = new LinkedList<>();
+        final Set<Long> set = new HashSet<>();
         final FileProgress fileProgress = this.getFileProgress(fileUrl.trim());
-        if (fileProgress == null) return list;
-        final List<ProcessedRecordNumber> processedRecordsNumbers = fileProgress.getProcessedRecordsNumbers();
-        if (processedRecordsNumbers.size() == 0) return list;
-        processedRecordsNumbers.forEach(processedRecordNumber -> list.add(processedRecordNumber.getRecordNumber()));
-        if (list.size() == 1) return list;
-        Collections.sort(list);
-        return list;
+        if (fileProgress == null) return set;
+        final Set<ProcessedRecordNumber> processedRecordsNumbers = fileProgress.getProcessedRecordsNumbers();
+        processedRecordsNumbers.forEach(processedRecordNumber -> set.add(processedRecordNumber.getRecordNumber()));
+        return set;
     }
 
     @Override
@@ -87,7 +82,7 @@ public class FileProgressServiceImpl implements FileProgressService {
                     0,
                     0,
                     true,
-                    new ArrayList<>());
+                    new HashSet<>());
             this.saveFileProgress(fileProgress);
         } else {
             fileProgress.setFinished(true);

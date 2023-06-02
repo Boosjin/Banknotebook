@@ -5,8 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "FILE_PROGRESS")
@@ -36,15 +36,15 @@ public class FileProgress {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "FILE_URL")
-    private List<ProcessedRecordNumber> processedRecordsNumbers;
+    private Set<ProcessedRecordNumber> processedRecordsNumbers;
 
-    public void setProcessedRecordsNumbers(List<ProcessedRecordNumber> processedRecordsNumbers) {
+    public void setProcessedRecordsNumbers(Set<ProcessedRecordNumber> processedRecordsNumbers) {
         this.processedRecordsNumbers = processedRecordsNumbers;
         processedRecordsNumbers.forEach(processedRecordNumber -> processedRecordNumber.setFileUrl(this.getFileUrl()));
     }
 
     public void addProcessedRecordNumber(ProcessedRecordNumber processedRecordNumber) {
-        if (this.processedRecordsNumbers == null) this.processedRecordsNumbers = new ArrayList<>();
+        if (this.processedRecordsNumbers == null) this.processedRecordsNumbers = new HashSet<>();
         processedRecordNumber.setFileUrl(this.getFileUrl());
         this.processedRecordsNumbers.add(processedRecordNumber);
     }
