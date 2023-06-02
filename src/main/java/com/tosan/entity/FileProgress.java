@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -40,5 +41,11 @@ public class FileProgress {
     public void setProcessedRecordsNumbers(List<ProcessedRecordNumber> processedRecordsNumbers) {
         this.processedRecordsNumbers = processedRecordsNumbers;
         processedRecordsNumbers.forEach(processedRecordNumber -> processedRecordNumber.setFileUrl(this.getFileUrl()));
+    }
+
+    public void addProcessedRecordNumber(ProcessedRecordNumber processedRecordNumber) {
+        if (this.processedRecordsNumbers == null) this.processedRecordsNumbers = new ArrayList<>();
+        processedRecordNumber.setFileUrl(this.getFileUrl());
+        this.processedRecordsNumbers.add(processedRecordNumber);
     }
 }
