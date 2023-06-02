@@ -5,7 +5,6 @@ import com.tosan.service.FileReaderService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -64,6 +63,14 @@ public class CsvFileServiceImpl implements CsvFileService {
 
     @Override
     public CSVParser getCsvFileParser(Reader reader, String[] csvHeaders) {
+        if (reader == null) {
+            log.info("You Can Not Provide A Null Reader For Getting CSV File Parser\n\n\n");
+            System.exit(0);
+        }
+        if (csvHeaders == null) {
+            log.info("You Can Not Provide A Null Array As CSV Headers For Getting CSV File Parser\n\n\n");
+            System.exit(0);
+        }
         CSVParser csvParser = null;
         try {
             csvParser = CSVFormat.DEFAULT
