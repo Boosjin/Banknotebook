@@ -29,7 +29,7 @@ public class CsvFileServiceImpl implements CsvFileService {
             log.info("The Property Called \"csvFileUrl\" Was Not Found In Properties File\n\n\n");
             System.exit(0);
         }
-        return csvFileUrl;
+        return csvFileUrl.trim();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class CsvFileServiceImpl implements CsvFileService {
             log.info("You Can Not Provide An Empty Or Null String As CSV File Url\n\n\n");
             System.exit(0);
         }
-        return fileReaderService.getFileReader(csvFileUrl);
+        return fileReaderService.getFileReader(csvFileUrl.trim());
     }
 
     @Override

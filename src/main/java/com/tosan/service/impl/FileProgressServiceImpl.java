@@ -72,10 +72,10 @@ public class FileProgressServiceImpl implements FileProgressService {
 
     @Override
     public void markFileAsProcessed(String fileUrl) {
-        FileProgress fileProgress = this.getFileProgress(fileUrl);
+        FileProgress fileProgress = this.getFileProgress(fileUrl.trim());
         if (fileProgress == null) {
             fileProgress = new FileProgress(
-                    fileUrl,
+                    fileUrl.trim(),
                     0,
                     0,
                     true,
