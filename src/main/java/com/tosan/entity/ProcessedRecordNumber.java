@@ -21,13 +21,10 @@ public class ProcessedRecordNumber {
 
     @Id
     @Column(name = "FILE_URL")
-    @NotBlank(message = "File URL Can Not Be An Empty String")
     private String fileUrl;
 
     @Id
     @Column(name = "RECORD_NUMBER")
-    @NotNull(message = "The Record Number Can Not Be Null")
-    @PositiveOrZero(message = "The Record Number Can Not Be A Negative Number")
     private Long recordNumber;
 }
 

@@ -20,15 +20,12 @@ public class FileProgress {
 
     @Id
     @Column(name = "FILE_URL")
-    @NotBlank(message = "File URL Can Not Be An Empty String")
     private String fileUrl;
 
     @Column(name = "VALID_RECORDS")
-    @PositiveOrZero(message = "Number Of Valid Records Can Not Be Negative")
     private Integer validRecords;
 
     @Column(name = "INVALID_RECORDS")
-    @PositiveOrZero(message = "Number Of Invalid Records Can Not Be Negative")
     private Integer invalidRecords;
 
     @Column(name = "FINISHED")
