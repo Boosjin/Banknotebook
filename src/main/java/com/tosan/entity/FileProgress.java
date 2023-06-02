@@ -36,4 +36,9 @@ public class FileProgress {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "fileUrl")
     private List<ProcessedRecordNumber> processedRecordsNumbers;
+
+    public void setProcessedRecordsNumbers(List<ProcessedRecordNumber> processedRecordsNumbers) {
+        this.processedRecordsNumbers = processedRecordsNumbers;
+        processedRecordsNumbers.forEach(processedRecordNumber -> processedRecordNumber.setFileUrl(this.getFileUrl()));
+    }
 }
