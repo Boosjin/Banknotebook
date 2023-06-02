@@ -39,7 +39,7 @@ public class FileProgressServiceImpl implements FileProgressService {
             log.info("You Can Not Pass An Empty String As File Location\n\n\n");
             System.exit(0);
         }
-        return fileProgressDao.getFileProgress(fileUrl);
+        return fileProgressDao.getFileProgress(fileUrl.trim());
     }
 
     @Override
