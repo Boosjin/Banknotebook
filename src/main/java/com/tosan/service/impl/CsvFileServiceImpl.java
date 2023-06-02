@@ -34,14 +34,23 @@ public class CsvFileServiceImpl implements CsvFileService {
 
     @Override
     public String[] getCsvFileHeaders() {
-        final String csvHeaders = PropertiesFileReaderServiceImpl
+        final String csvHeadersString = PropertiesFileReaderServiceImpl
                 .getPropertiesFile()
                 .getProperty("csvHeaders");
-        if (csvHeaders == null) {
+        if (csvHeadersString == null) {
             log.info("The Property Called \"csvHeaders\" Was Not Found In Properties File\n\n\n");
             System.exit(0);
         }
-        return csvHeaders.split(",");
+        String[] csvHeaders = csvHeadersString.split(",");
+        String[] csvTrimmedHeaders = new String[csvHeaders.length];
+        for (int i = 0; i < csvHeaders.length; i++) {
+            if (csvHeaders[i].trim().equals("")) {
+                log.info("You Can Not Provide An Empty String As CSV Header\n\n\n");
+                System.exit(0);
+            }
+            csvTrimmedHeaders[i] = csvHeaders[i].trim();
+        }
+        return csvTrimmedHeaders;
     }
 
     @Override
